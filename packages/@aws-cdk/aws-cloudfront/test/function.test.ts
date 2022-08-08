@@ -19,11 +19,11 @@ describe('CloudFront Function', () => {
         CF2D7241DD7: {
           Type: 'AWS::CloudFront::Function',
           Properties: {
-            Name: 'testregionStackCF2CE3F783F',
+            Name: 'Stack-CF2-CE3F783F',
             AutoPublish: true,
             FunctionCode: 'code',
             FunctionConfig: {
-              Comment: 'testregionStackCF2CE3F783F',
+              Comment: 'Stack-CF2-CE3F783F',
               Runtime: 'cloudfront-js-1.0',
             },
           },
@@ -44,31 +44,11 @@ describe('CloudFront Function', () => {
         CF2D7241DD7: {
           Type: 'AWS::CloudFront::Function',
           Properties: {
-            Name: {
-              'Fn::Join': [
-                '',
-                [
-                  {
-                    Ref: 'AWS::Region',
-                  },
-                  'StackCF2CE3F783F',
-                ],
-              ],
-            },
+            Name: 'Stack-CF2-CE3F783F',
             AutoPublish: true,
             FunctionCode: 'code',
             FunctionConfig: {
-              Comment: {
-                'Fn::Join': [
-                  '',
-                  [
-                    {
-                      Ref: 'AWS::Region',
-                    },
-                    'StackCF2CE3F783F',
-                  ],
-                ],
-              },
+              Comment: 'Stack-CF2-CE3F783F',
               Runtime: 'cloudfront-js-1.0',
             },
           },
@@ -120,11 +100,11 @@ describe('CloudFront Function', () => {
         CF2D7241DD7: {
           Type: 'AWS::CloudFront::Function',
           Properties: {
-            Name: 'testregionStackCF2CE3F783F',
+            Name: 'Stack-CF2-CE3F783F',
             AutoPublish: true,
             FunctionCode: 'function handler(event) {\n  return event.request;\n}',
             FunctionConfig: {
-              Comment: 'testregionStackCF2CE3F783F',
+              Comment: 'Stack-CF2-CE3F783F',
               Runtime: 'cloudfront-js-1.0',
             },
           },

@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { IResource, Names, Resource, Stack } from '@aws-cdk/core';
+import { IResource, Names, Resource } from '@aws-cdk/core';
 import { Construct } from 'constructs';
 import { CfnFunction } from './cloudfront.generated';
 
@@ -159,7 +159,11 @@ export class Function extends Resource implements IFunction {
   constructor(scope: Construct, id: string, props: FunctionProps) {
     super(scope, id);
 
-    this.functionName = props.functionName ?? this.generateName();
+    this.functionName = props.functionName ?? Names.uniqueResourceName(this, {
+      maxLength: 64,
+      separator: '-',
+      allowedSpecialCharacters: '_-',
+    });
 
     const resource = new CfnFunction(this, 'Resource', {
       autoPublish: true,
@@ -173,14 +177,6 @@ export class Function extends Resource implements IFunction {
 
     this.functionArn = resource.attrFunctionArn;
     this.functionStage = resource.attrStage;
-  }
-
-  private generateName(): string {
-    const name = Stack.of(this).region + Names.uniqueId(this);
-    if (name.length > 64) {
-      return name.substring(0, 32) + name.substring(name.length - 32);
-    }
-    return name;
   }
 }
 
